@@ -18,6 +18,9 @@ class InsertPerformanceSpec extends IntegrationSpec {
         withStopWatch {
             iterations.times {
                 new UniqueDomain(value: "$it").save()
+                if (it % 50 == 0) {
+                    session.flush()
+                }
             }
             session.flush()
         }
@@ -34,6 +37,9 @@ class InsertPerformanceSpec extends IntegrationSpec {
         withStopWatch {
             iterations.times {
                 new SimpleDomain(value: "$it").save()
+                if (it % 50 == 0) {
+                    session.flush()
+                }
             }
             session.flush()
         }
@@ -73,6 +79,7 @@ class InsertPerformanceSpec extends IntegrationSpec {
             }
             session.managedFlush()
             // see http://koenserneels.blogspot.jp/2013/03/bulk-fetching-with-hibernate.html
+            session.close()
         }
 
         then:

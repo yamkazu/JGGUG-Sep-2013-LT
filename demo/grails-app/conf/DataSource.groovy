@@ -25,6 +25,8 @@ environments {
             username = ""
             dbCreate = "create-drop"
             url = "jdbc:postgresql:testDb"
+//            dbCreate = "create"
+//            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
         }
     }
     production {
